@@ -21,10 +21,15 @@
       <input formControlName="price"   type="text" class="form-control" id="inputPrice">
     </div>
   
-    <button type="submit" class="btn btn-primary" (click)="save()"    >Salvar</button>
+    <button *ngIf="!isEditing"   type="submit" class="btn btn-primary" (click)="save()">Salvar</button>
+    <button *ngIf="isEditing"   type="submit" class="btn btn-primary"  (click)="update()">Atualizar</button>
+
+    
   </form>
 
-  Total de produtos: {{products.length}}
+
+<div class="display-4 text-center">Produtos Cadastrados</div>  
+Total de produtos: {{products.length}}
 
 <table class="table">
   <thead>
@@ -33,6 +38,8 @@
       <th scope="col">Nome</th>
       <th scope="col">Descrição</th>
       <th scope="col">Preço</th>
+      <th scope="col">Remover</th>
+      <th scope="col">Alterar</th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +48,16 @@
       <td>{{p.name}}</td>
       <td>{{p.description}}</td>
       <td>{{p.price}}</td>
+      <td>
+          <button class="btn btn-danger" (click)="onClickDelete(p)"   >
+            Remover
+          </button>
+      </td>
+      <td>
+          <button class="btn btn-secondary"  (click)="onClickUpdate(p)" >
+            Alterar
+          </button>
+      </td>
     </tr>
    
     
